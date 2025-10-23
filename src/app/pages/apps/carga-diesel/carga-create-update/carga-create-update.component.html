@@ -1,0 +1,159 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+  <div class="flex items-center" mat-dialog-title>
+    <h2 class="headline m-0 flex-auto">Agregar Carga</h2>
+    <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+      <mat-icon svgIcon="mat:close"></mat-icon>
+    </button>
+  </div>
+
+  <mat-divider class="text-border"></mat-divider>
+  <mat-dialog-content class="flex flex-col">
+
+    <div class="flex flex-col sm:flex-row">
+
+      <mat-form-field class="flex-auto">
+        <mat-label>Operador</mat-label>
+        <mat-select formControlName="operador">
+          <mat-option *ngFor="let operador of operadores" [value]="operador.nombre+' '+operador.apellidopaterno">
+            {{ operador.nombre +" "+ operador.apellidopaterno}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Economico</mat-label>
+        <input formControlName="economico" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Destino</mat-label>
+        <input formControlName="destino" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:edit_location"></mat-icon>
+      </mat-form-field>
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Cliente</mat-label>
+        <input formControlName="cliente" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:location_city"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Plataforma</mat-label>
+        <input formControlName="plataforma" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:edit_location"></mat-icon>
+      </mat-form-field>
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Capacidad</mat-label>
+        <input formControlName="capacidad" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:location_city"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!---->
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Configuracion Vehicular</mat-label>
+        <input formControlName="confVehicular" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:my_location"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Peso</mat-label>
+        <input formControlName="peso" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:location_city"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Costo operativo</mat-label>
+        <input formControlName="costo_operativo" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:my_location"></mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Costo flete</mat-label>
+        <input formControlName="costo_flete" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:location_city"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col sm:flex-row">
+
+      <mat-form-field>
+        <mat-label>Fecha Salida</mat-label>
+        <input [matDatepicker]="fecha_salida" formControlName="fecha_salida" matInput placeholder="" />
+        <mat-datepicker-toggle
+          [for]="fecha_salida"
+          matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #fecha_salida></mat-datepicker>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha Llegada</mat-label>
+        <input [matDatepicker]="fecha_llegada" formControlName="fecha_llegada" matInput placeholder="" />
+        <mat-datepicker-toggle
+          [for]="fecha_llegada"
+          matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #fecha_llegada></mat-datepicker>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+
+    </div>
+
+    <mat-form-field class="flex-auto">
+      <mat-label>Diesel</mat-label>
+      <input formControlName="diesel" matInput />
+      <mat-icon matIconPrefix svgIcon="mat:commute"></mat-icon>
+    </mat-form-field>
+
+    <!--div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Carga</mat-label>
+        <input cdkFocusInitial formControlName="carga_1" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:supervisor_account"></mat-icon>
+      </mat-form-field>
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Gasolinera</mat-label>
+        <input formControlName="gasolinera_1" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:supervisor_account"></mat-icon>
+      </mat-form-field>
+      </div-->
+
+    <!-- Sección de cargas dinámicas -->
+    <div formArrayName="cargas" class="mt-4">
+      <div *ngFor="let carga of cargas.controls; let i = index" [formGroupName]="i"
+        class="flex flex-col sm:flex-row items-center">
+
+        <mat-form-field class="flex-auto">
+          <mat-label>Carga</mat-label>
+          <input formControlName="carga" matInput />
+        </mat-form-field>
+        <mat-form-field class="sm:ml-6 flex-auto">
+          <mat-label>Gasolinera</mat-label>
+          <input formControlName="gasolinera" matInput />
+        </mat-form-field>
+        <button mat-icon-button color="warn" type="button" (click)="eliminarCarga(i)">
+          <mat-icon>X</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <button mat-button type="button" color="primary" (click)="agregarCarga()">
+      + Agregar carga
+    </button>
+
+    <!--mat-form-field class="flex-auto"><mat-label>Notes</mat-label><textarea formControlName="notes" matInput></textarea></mat-form-field-->
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">Cancel</button>
+    <button *ngIf="isCreateMode()" color="primary" mat-flat-button type="submit">Guardar carga</button>
+    <button *ngIf="isUpdateMode()" color="primary" mat-flat-button type="submit">Actualizar</button>
+  </mat-dialog-actions>
+</form>

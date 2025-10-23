@@ -1,0 +1,74 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+  <div class="flex items-center" mat-dialog-title>
+    <h2 class="headline m-0 flex-auto">Agregar Operador</h2>
+    <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+      <mat-icon svgIcon="mat:close"></mat-icon>
+    </button>
+  </div>
+
+  <mat-divider class="text-border"></mat-divider>
+  <mat-dialog-content class="flex flex-col">
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Nombre</mat-label>
+        <input cdkFocusInitial formControlName="nombre" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
+      </mat-form-field>
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>apellidopaterno</mat-label>
+        <input formControlName="apellidopaterno" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Fecha Alta</mat-label>
+      <input [matDatepicker]="fecha_alta" formControlName="fecha_alta" matInput placeholder="" />
+      <mat-datepicker-toggle
+        [for]="fecha_alta"
+        matIconSuffix></mat-datepicker-toggle>
+      <mat-datepicker #fecha_alta></mat-datepicker>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto">
+      <mat-label>RFC</mat-label>
+      <input formControlName="curp" matInput />
+      <mat-icon matIconPrefix svgIcon="mat:edit_location"></mat-icon>
+    </mat-form-field>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Licencia</mat-label>
+        <input formControlName="licencia" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:my_location"></mat-icon>
+      </mat-form-field>
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Telefono</mat-label>
+        <input formControlName="telefono" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:location_city"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Fecha Vencimiento</mat-label>
+      <input [matDatepicker]="fechavencimientolicencia" formControlName="fechavencimientolicencia" matInput placeholder="" />
+      <mat-datepicker-toggle [for]="fechavencimientolicencia"
+        matIconSuffix></mat-datepicker-toggle>
+      <mat-datepicker #fechavencimientolicencia></mat-datepicker>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+
+
+    <!---->
+
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">Cancel</button>
+    <button *ngIf="isCreateMode()" color="primary" mat-flat-button type="submit">Guardar carga</button>
+    <button *ngIf="isUpdateMode()" color="primary" mat-flat-button type="submit">Actualizar</button>
+  </mat-dialog-actions>
+</form>
