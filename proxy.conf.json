@@ -1,0 +1,7 @@
+{
+  "/api": {
+      "target": "https://asl-api-production.up.railway.app",
+      "secure": true,
+      "changeOrigin": true
+  }
+}
