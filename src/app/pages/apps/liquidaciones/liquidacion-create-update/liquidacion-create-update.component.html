@@ -1,0 +1,205 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+  <div class="flex items-center" mat-dialog-title>
+    <h2 class="headline m-0 flex-auto">Generar Liquidación</h2>
+    <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+      <mat-icon svgIcon="mat:close"></mat-icon>
+    </button>
+  </div>
+
+  <mat-divider class="text-border"></mat-divider>
+  <mat-dialog-content class="flex flex-col">
+
+    <mat-form-field>
+      <mat-label>Fecha</mat-label>
+      <input [matDatepicker]="fecha" formControlName="fecha" matInput placeholder="" />
+      <mat-datepicker-toggle
+        [for]="fecha"
+        matIconSuffix></mat-datepicker-toggle>
+      <mat-datepicker #fecha></mat-datepicker>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Operador</mat-label>
+      <mat-select formControlName="operador">
+        <mat-option *ngFor="let operador of operadores" [value]="operador.nombre+' '+operador.apellidopaterno">
+          {{ operador.nombre +" "+ operador.apellidopaterno}}
+        </mat-option>
+      </mat-select>
+      <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
+    </mat-form-field>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Día</mat-label>
+        <input formControlName="dia" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:calendar_today"></mat-icon>
+      </mat-form-field>
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Viaje</mat-label>
+        <input formControlName="viaje" matInput />
+        <mat-icon matIconPrefix svgIcon="mat:directions_car"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Ruta</mat-label>
+      <input formControlName="ruta" matInput />
+      <mat-icon matIconPrefix svgIcon="mat:route"></mat-icon>
+    </mat-form-field>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Fecha Salida</mat-label>
+        <input [matDatepicker]="fecha_salida" formControlName="fecha_salida" matInput placeholder="" />
+        <mat-datepicker-toggle
+          [for]="fecha_salida"
+          matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #fecha_salida></mat-datepicker>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Fecha Llegada</mat-label>
+        <input [matDatepicker]="fecha_llegada" formControlName="fecha_llegada" matInput placeholder="" />
+        <mat-datepicker-toggle
+          [for]="fecha_llegada"
+          matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #fecha_llegada></mat-datepicker>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </div>
+
+    <mat-divider class="my-4"></mat-divider>
+
+    <div class="flex items-center justify-between mb-4 cursor-pointer section-header" (click)="toggleGastosViaje()">
+      <h3 class="title m-0">Gastos del Viaje</h3>
+      <button mat-icon-button type="button">
+        <mat-icon [svgIcon]="showGastosViaje ? 'mat:expand_less' : 'mat:expand_more'"></mat-icon>
+      </button>
+    </div>
+
+    <div [@expandCollapse]="showGastosViaje ? 'expanded' : 'collapsed'" class="collapsible-section">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+      <mat-form-field>
+        <mat-label>Comidas</mat-label>
+        <input formControlName="comidas" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Rampa</mat-label>
+        <input formControlName="rampa" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Pensión</mat-label>
+        <input formControlName="pension" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Sanitaria</mat-label>
+        <input formControlName="sanitaria" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Federal</mat-label>
+        <input formControlName="federal" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Tránsito</mat-label>
+        <input formControlName="transito" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Aguas</mat-label>
+        <input formControlName="aguas" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Otros</mat-label>
+        <input formControlName="otros" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+      </div>
+
+      <mat-form-field class="w-full">
+        <mat-label>Subtotal</mat-label>
+        <input formControlName="subtotal" matInput type="number" readonly />
+        <span matPrefix>$&nbsp;</span>
+        <mat-icon matIconSuffix svgIcon="mat:calculate"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-divider class="my-4"></mat-divider>
+
+    <div class="flex items-center justify-between mb-4 cursor-pointer section-header" (click)="toggleImporteViaje()">
+      <h3 class="title m-0">Importe del Viaje</h3>
+      <button mat-icon-button type="button">
+        <mat-icon [svgIcon]="showImporteViaje ? 'mat:expand_less' : 'mat:expand_more'"></mat-icon>
+      </button>
+    </div>
+
+    <div [@expandCollapse]="showImporteViaje ? 'expanded' : 'collapsed'" class="collapsible-section">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
+      <mat-form-field>
+        <mat-label>Gastos Depositados</mat-label>
+        <input formControlName="gastos_depositados" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Adelanto</mat-label>
+        <input formControlName="adelanto" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Ahorro</mat-label>
+        <input formControlName="ahorro" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Abono Préstamo</mat-label>
+        <input formControlName="abono_prestamo" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Retenciones</mat-label>
+        <input formControlName="retenciones" matInput type="number" min="0" step="0.01" />
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+      </div>
+
+      <mat-form-field class="w-full mb-4">
+        <mat-label>Total</mat-label>
+        <input formControlName="total" matInput type="number" readonly />
+        <span matPrefix>$&nbsp;</span>
+        <mat-icon matIconSuffix svgIcon="mat:calculate"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="w-full">
+      <mat-label>Observaciones</mat-label>
+      <textarea formControlName="observaciones" matInput rows="3"></textarea>
+      <mat-icon matIconPrefix svgIcon="mat:note"></mat-icon>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">Cancel</button>
+    <button *ngIf="isCreateMode()" color="primary" mat-flat-button type="submit">Guardar liquidación</button>
+    <button *ngIf="isUpdateMode()" color="primary" mat-flat-button type="submit">Actualizar</button>
+  </mat-dialog-actions>
+</form>
+

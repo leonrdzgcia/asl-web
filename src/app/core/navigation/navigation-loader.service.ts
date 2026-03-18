@@ -23,7 +23,7 @@ export class NavigationLoaderService {
 
       {
         type: 'subheading',
-        label: 'version 2/JULIO/2025',
+        label: 'ver. 17 Marzo 2026',
         children: [
           {
             type: 'link',
@@ -47,6 +47,12 @@ export class NavigationLoaderService {
             type: 'link',
             label: 'Dasboard',
             route: '/apps/scrumboard/1',
+            icon: 'mat:assignment'
+          },
+          {
+            type: 'link',
+            label: 'Liquidaciones',
+            route: '/apps/liquidaciones',
             icon: 'mat:assignment'
           }/*,
           {

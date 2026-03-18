@@ -90,6 +90,10 @@ export const appRoutes: VexRoutes = [
             path: 'operadores',
             loadComponent: () => import('./pages/apps/operadores/operadores.component').then( (m) => m.OperadoresComponent),
             data: { toolbarShadowEnabled: false }
+          },{
+            path: 'liquidaciones',
+            loadComponent: () => import('./pages/apps/liquidaciones/liquidaciones.component').then( (m) => m.LiquidacionesComponent),
+            data: { toolbarShadowEnabled: false }
           },
           /*{
             path: 'contacts',

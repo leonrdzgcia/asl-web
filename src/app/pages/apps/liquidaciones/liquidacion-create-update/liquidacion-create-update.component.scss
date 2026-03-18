@@ -1,0 +1,25 @@
+// Estilos específicos del componente de formulario de liquidaciones
+
+.section-header {
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+  padding: 8px;
+  margin: -8px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.collapsible-section {
+  overflow: hidden;
+}
+
+::ng-deep mat-dialog-content {
+  min-height: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+
+  // Hacer la transición suave al cambiar contenido
+  transition: min-height 0.3s ease-in-out;
+}
