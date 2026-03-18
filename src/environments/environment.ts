@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  serverApiUrl: 'http:asl-api-production.up.railway.app'
-  //serverApiUrl: 'http://localhost:8080'
+  // En desarrollo local, usar localhost:8080 directamente
+  // El proxy también funciona con ruta relativa, pero es más claro usar la URL completa
+  serverApiUrl: 'http://localhost:8080'
 };
 
 
