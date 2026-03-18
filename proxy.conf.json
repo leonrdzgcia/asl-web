@@ -1,7 +1,8 @@
 {
-  "/api": {
-      "target": "https://asl-api-production.up.railway.app",
-      "secure": true,
-      "changeOrigin": true
+  "/api/*": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }
