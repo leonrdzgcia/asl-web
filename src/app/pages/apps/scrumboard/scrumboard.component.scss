@@ -24,6 +24,14 @@
       @apply font-medium;
     }
   }
+
+  .detail-list {
+    @apply text-xs text-secondary mt-2 space-y-0.5;
+
+    div {
+      @apply overflow-hidden truncate;
+    }
+  }
 }
 
 .avatar.overlapping {

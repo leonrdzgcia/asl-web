@@ -8,6 +8,20 @@ export interface ScrumboardCard {
   id: number;
   title: string;
   description?: string;
+  fecha?: string;
+  cliente?: string;
+  destino?: string;
+  peso?: string;
+  diesel?: string;
+  seFacturo?: boolean;
+  clienteRetorno?: string;
+  destinoRetorno?: string;
+  pesoRetorno?: string;
+  dieselRetorno?: string;
+  configuracion?: string;
+  operador?: string;
+  economico?: string;
+  monto?: string;
   dueDate?: {
     date: DateTime;
     done: boolean;

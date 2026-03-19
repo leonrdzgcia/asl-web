@@ -35,10 +35,13 @@ import { Observable } from 'rxjs';
 import { VexDateFormatTokensPipe } from '@vex/pipes/vex-date-format-tokens/vex-date-format-tokens.pipe';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 import { VexScrollbarComponent } from '@vex/components/vex-scrollbar/vex-scrollbar.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { VexSecondaryToolbarComponent } from '@vex/components/vex-secondary-toolbar/vex-secondary-toolbar.component';
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 
@@ -63,6 +66,9 @@ import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
     NgClass,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatButtonToggleModule,
     ReactiveFormsModule,
     AsyncPipe,
     VexDateFormatTokensPipe
@@ -86,7 +92,21 @@ export class ScrumboardComponent implements OnInit {
     title: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required]
-    })
+    }),
+    description: new FormControl(''),
+    fecha: new FormControl(''),
+    cliente: new FormControl(''),
+    destino: new FormControl(''),
+    peso: new FormControl(''),
+    diesel: new FormControl(''),
+    operador: new FormControl(''),
+    economico: new FormControl(''),
+    configuracion: new FormControl(''),
+    seFacturo: new FormControl(false),
+    clienteRetorno: new FormControl(''),
+    destinoRetorno: new FormControl(''),
+    pesoRetorno: new FormControl(''),
+    dieselRetorno: new FormControl('')
   });
   addListCtrl = new UntypedFormControl();
 
@@ -108,6 +128,29 @@ export class ScrumboardComponent implements OnInit {
   ngOnInit() {
     console.log(" -- ScrumboardComponent ngoninit");
     console.log(" -- ScrumboardComponent ngoninit");
+
+    const seFacturoControl = this.addCardForm.get('seFacturo');
+
+    seFacturoControl?.valueChanges.subscribe((isChecked) => {
+      if (isChecked) {
+        this.addCardForm.patchValue({
+          clienteRetorno: this.addCardForm.value.cliente,
+          destinoRetorno: this.addCardForm.value.destino,
+          pesoRetorno: this.addCardForm.value.peso,
+          dieselRetorno: this.addCardForm.value.diesel
+        }, { emitEvent: false });
+      }
+    });
+
+    ['cliente', 'destino', 'peso', 'diesel'].forEach((field) => {
+      this.addCardForm.get(field)?.valueChanges.subscribe((value) => {
+        if (seFacturoControl?.value) {
+          this.addCardForm.patchValue({
+            [`${field}Retorno`]: value
+          } as any, { emitEvent: false });
+        }
+      });
+    });
   }
 
   open(board: Scrumboard, list: ScrumboardList, card: ScrumboardCard) {
@@ -228,12 +271,26 @@ export class ScrumboardComponent implements OnInit {
 
     list.children.push({
       id: ScrumboardComponent.nextId++,
-      title: form.title
+      title: form.title,
+      description: form.description ?? undefined,
+      fecha: form.fecha ?? undefined,
+      cliente: form.cliente ?? undefined,
+      destino: form.destino ?? undefined,
+      peso: form.peso ?? undefined,
+      diesel: form.diesel ?? undefined,
+      operador: form.operador ?? undefined,
+      economico: form.economico ?? undefined,
+      configuracion: form.configuracion ?? undefined,
+      seFacturo: form.seFacturo ?? false,
+      clienteRetorno: form.clienteRetorno ?? undefined,
+      destinoRetorno: form.destinoRetorno ?? undefined,
+      pesoRetorno: form.pesoRetorno ?? undefined,
+      dieselRetorno: form.dieselRetorno ?? undefined
     });
 
     close();
 
-    this.addCardForm.reset();
+    this.addCardForm.reset({ seFacturo: false });
   }
 
   createList(board: Scrumboard, close: () => void) {

@@ -80,11 +80,11 @@ export class ScrumboardDialogComponent implements OnInit {
     users: this.fb.control<ScrumboardUser[]>([]),
     labels: this.fb.control<ScrumboardLabel[]>([]),
     fecha: [''],
-    clienta: [''],
+    cliente: [''],
     seFacturo: [false],
     monto: [''],
     configuracion: [''],
-    chofer: [''],
+    operador: [''],
     economico: [''],
     diesel: ['']
   });
@@ -120,7 +120,15 @@ export class ScrumboardDialogComponent implements OnInit {
       dueDate: card.dueDate || null,
       //cover: card.cover || null,
       //users: card.users || [],
-      labels: card.labels || []
+      labels: card.labels || [],
+      fecha: card.fecha ?? null,
+      cliente: card.cliente ?? null,
+      monto: card.monto ?? null,
+      configuracion: card.configuracion ?? null,
+      operador: card.operador ?? null,
+      economico: card.economico ?? null,
+      diesel: card.diesel ?? null,
+      seFacturo: card.seFacturo ?? false
     });
 
     this.form.setControl('attachments', this.fb.array(card.attachments || []));
@@ -128,7 +136,10 @@ export class ScrumboardDialogComponent implements OnInit {
   }
 
   save() {
-    this.dialogRef.close(this.form.value);
+    this.dialogRef.close({
+      ...this.data.card,
+      ...this.form.value
+    });
   }
 
   isImageExtension(extension: string) {

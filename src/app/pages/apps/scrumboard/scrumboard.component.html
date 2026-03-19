@@ -74,6 +74,13 @@
 
               <h3 class="body-2 m-0 select-none">{{ card.title }}</h3>
 
+              <div class="detail-list">
+                <div *ngIf="card.cliente">Cliente: {{ card.cliente }}</div>
+                <div *ngIf="card.monto">Monto: {{ card.monto }}</div>
+                <div *ngIf="card.diesel">Diesel: {{ card.diesel }}</div>
+                <div *ngIf="card.seFacturo">Facturado: Sí</div>
+              </div>
+
               <div
                 *ngIf="
                   card.dueDate ||
@@ -123,20 +130,118 @@
 
       <div #addCardOriginRef class="bg-hover flex-none">
         <ng-template #addCardTemplate let-close="close">
-          <div class="card px-4 py-6">
+          <div class="card px-4 py-6 bg-white dark:bg-surface">
             <form
               (ngSubmit)="createCard(list, close)"
-              [formGroup]="addCardForm">
-              <mat-form-field subscriptSizing="dynamic">
-                <mat-label>Titulo de la nota</mat-label>
-                <input
-                  formControlName="title"
-                  matInput
-                  placeholder="Enter your title..." />
-                <button color="primary" mat-icon-button matIconSuffix type="submit">
-                  <mat-icon svgIcon="mat:add"></mat-icon>
+              [formGroup]="addCardForm"
+              class="space-y-4">
+
+              <div class="flex items-center justify-between">
+                <h3 class="heading-6 m-0">Viaje nuevo</h3>
+                <button mat-icon-button type="button" (click)="close()">
+                  <mat-icon svgIcon="mat:close"></mat-icon>
                 </button>
-              </mat-form-field>
+              </div>
+
+              <p class="text-sm text-secondary m-0">Completa los datos de la nota para el tablero <strong>{{ list.label }}</strong>.</p>
+
+              <div class="grid sm:grid-cols-2 gap-3">
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Viaje</mat-label>
+                  <input formControlName="title" matInput placeholder="Viaje" />
+                </mat-form-field>
+
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Fecha</mat-label>
+                  <input formControlName="fecha" matInput type="date" />
+                </mat-form-field>
+
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Operador</mat-label>
+                  <input formControlName="operador" matInput placeholder="Económico" />
+                </mat-form-field>
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Economico</mat-label>
+                  <input formControlName="economico" matInput  placeholder="Litros" />
+                </mat-form-field>
+
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Plataforma</mat-label>
+                  <input formControlName="economico" matInput placeholder="Económico" />
+                </mat-form-field>
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Configuracion Vechicular</mat-label>
+                  <input formControlName="configuracion" matInput  placeholder="Litros" />
+                </mat-form-field>
+
+
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Cliente</mat-label>
+                  <input formControlName="cliente" matInput placeholder="Nombre del cliente" />
+                </mat-form-field>
+
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Destino</mat-label>
+                  <input formControlName="destino" matInput placeholder="Destino" />
+                </mat-form-field>
+
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Peso</mat-label>
+                  <input formControlName="peso" matInput type="number" placeholder="Peso" />
+                </mat-form-field>
+
+                <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Diesel</mat-label>
+                  <input formControlName="diesel" matInput type="number" placeholder="Diesel" />
+                </mat-form-field>
+
+
+                <div class="flex items-center gap-2">
+                  <span class="text-sm">¿Regresa Cargado?</span>
+                  <mat-button-toggle-group formControlName="seFacturo" aria-label="Facturado">
+                    <mat-button-toggle [value]="true">Sí</mat-button-toggle>
+                    <mat-button-toggle [value]="false">No</mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+
+                <ng-container *ngIf="addCardForm.get('seFacturo')?.value">
+                  <h3 class="heading-6 m-0 pt-4">Datos de Regreso</h3>
+                  <div class="grid sm:grid-cols-2 gap-3 mt-2">
+                    <mat-form-field subscriptSizing="dynamic" class="w-full">
+                      <mat-label>Cliente</mat-label>
+                      <input formControlName="clienteRetorno" matInput placeholder="Cliente regreso" />
+                    </mat-form-field>
+
+                    <mat-form-field subscriptSizing="dynamic" class="w-full">
+                      <mat-label>Destino</mat-label>
+                      <input formControlName="destinoRetorno" matInput placeholder="Destino regreso" />
+                    </mat-form-field>
+
+                    <mat-form-field subscriptSizing="dynamic" class="w-full">
+                      <mat-label>Peso</mat-label>
+                      <input formControlName="pesoRetorno" matInput type="number" placeholder="Peso regreso" />
+                    </mat-form-field>
+
+                    <mat-form-field subscriptSizing="dynamic" class="w-full">
+                      <mat-label>Diesel</mat-label>
+                      <input formControlName="dieselRetorno" matInput type="number" placeholder="Diesel regreso" />
+                    </mat-form-field>
+                  </div>
+                </ng-container>
+
+              </div>
+              <mat-form-field subscriptSizing="dynamic" class="w-full">
+                  <mat-label>Descripción</mat-label>
+                  <textarea formControlName="description" matInput rows="2" placeholder="Detalles de la carga..."></textarea>
+                </mat-form-field>
+
+              <div class="flex justify-end gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                <button mat-stroked-button type="button" (click)="close()">Cancelar</button>
+                <button type="submit" mat-flat-button color="primary" [disabled]="addCardForm.invalid">
+                  <mat-icon svgIcon="mat:save"></mat-icon>
+                  Guardar nota
+                </button>
+              </div>
             </form>
           </div>
         </ng-template>

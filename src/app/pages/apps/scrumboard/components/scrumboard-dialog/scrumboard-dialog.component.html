@@ -81,7 +81,7 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Cliente</mat-label>
-    <input matInput formControlName="clienta">
+    <input matInput formControlName="cliente">
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -95,8 +95,8 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Chofer</mat-label>
-    <input matInput formControlName="chofer">
+    <mat-label>Operador</mat-label>
+    <input matInput formControlName="operador">
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -110,7 +110,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>¿Se facturó?</mat-label>
+    <mat-label>¿Regresa cargado?</mat-label>
     <mat-select formControlName="seFacturo">
       <mat-option [value]="true">Sí</mat-option>
       <mat-option [value]="false">No</mat-option>
@@ -118,7 +118,7 @@
   </mat-form-field>
 
   <div class="flex items-center gap-2">
-  <span>¿Se facturó?</span>
+  <span>¿Regresa cargado?</span>
   <mat-button-toggle-group formControlName="seFacturo" appearance="legacy" exclusive>
     <mat-button-toggle [value]="true">Sí</mat-button-toggle>
     <mat-button-toggle [value]="false">No</mat-button-toggle>
