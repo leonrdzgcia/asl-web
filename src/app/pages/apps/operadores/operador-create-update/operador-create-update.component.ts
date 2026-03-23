@@ -58,14 +58,28 @@ export class OperadorCreateUpdateComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
-      id_operador: [''],
-      fecha_alta: ['', Validators.required],
+      idOperador: [''],
       nombre: ['', Validators.required],
-      apellidopaterno: ['', Validators.required],
+      alias: ['', Validators.required],
+      rfc: ['', Validators.required],
+      nss: ['', Validators.required],
       curp: ['', Validators.required],
-      telefono: ['', Validators.required],
-      licencia: ['', Validators.required],
-      fechavencimientolicencia: ['', Validators.required],
+      fechaIngreso: ['', Validators.required],
+      licenciaFederal: ['', Validators.required],
+      categoria: ['', Validators.required],
+      vigenciaInicioLicenciaFederal: ['', Validators.required],
+      vigenciaFinLicenciaFederal: ['', Validators.required],
+      expedienteMedico: ['', Validators.required],
+      
+      licenciaLocal: ['', Validators.required],
+      vigInicioLicenciaLocal: ['', Validators.required],
+      vigFinLicenciaLocal: ['', Validators.required],
+      primaVacacional: ['', Validators.required],
+      accesoTernium: ['', Validators.required],
+      vigExamenMedico: ['', Validators.required],
+      rControl: ['', Validators.required],
+      vigenciaRControl: ['', Validators.required],
+      foto: [null, Validators.required]
     });
   }
 
@@ -85,34 +99,11 @@ export class OperadorCreateUpdateComponent implements OnInit {
     } else if (this.mode === 'update') {
       this.updateCustomer();
     }
-    /*if (this.form.valid) {
-      const formData = this.form.value;
-      console.log('.. SAVE El formulario operadores FORMDATA ');
-      console.log(formData);
-      this.apiConsumo.guardarOperador(formData).subscribe({
-        next: (response) => {
-          console.log('Carga guardada con éxito:', response);
-          console.log('.. SAVE El formulario 0');
-          window.location.reload();
-        },
-        error: (error) => {
-          console.error('Error al guardar la carga:', error);
-        }
-      });
-    } else {
-      console.error('El formulario no es válido');
-      this.form.markAllAsTouched();
-    }*/
-
   }
   createCustomer() {
-    /*const operadores = this.form.value;
-    this.dialogRef.close(operadores);*/
     console.log('.. SAVE El formulario operadores');
     if (this.form.valid) {
       const formData = this.form.value;
-      console.log('.. SAVE El formulario operadores FORMDATA ');
-      console.log(formData);
       this.apiConsumo.guardarOperador(formData).subscribe({
         next: (response) => {
           console.log('Carga guardada con éxito:', response);
@@ -132,24 +123,12 @@ export class OperadorCreateUpdateComponent implements OnInit {
   }
   updateCustomer() {
     console.log('-- updateCustomer');
-    /*const operadores = this.form.value;
-    if (!this.defaults) {
-      throw new Error('Customer ID does not exist, this customer cannot be updated');
-    }*/
-    //operadores.id = this.defaults.id;
-    //this.dialogRef.close(operadores);
-    console.log(this.form.value);
-    //this.form.value.id =this.defaults?.id_operador;
-    console.log(this.defaults);
-    console.log(this.defaults?.id_operador);
     this.apiConsumo.actualizarOperador(this.form.value.id_operador, this.form.value).subscribe({
       next: (response) => {
         console.log('Operador actualizado', response);
         this.snackBar.open('Operador actualizado exitosamente.', 'Cerrar', {
           duration: 3000,
         });
-
-
         this.form.reset();
         const cargas = this.form.value;
         this.dialogRef.close(cargas);

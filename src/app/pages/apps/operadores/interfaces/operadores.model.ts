@@ -1,21 +1,49 @@
 export class Operadores {
-  id_operador: number;
+  idOperador: number;
   nombre: string;
-  fecha_alta: string;
-  apellidopaterno: string;
+  alias: string;
+  rfc: string;
+  nss: string;
   curp: string;
-  telefono: string;
-  licencia: string;
-  fechavencimientolicencia: string;
+  fechaIngreso: string;
+  licenciaFederal: string;
+  categoria: string;
+  vigenciaInicioLicenciaFederal: string;
+  vigenciaFinLicenciaFederal: string;
+  expedienteMedico: string;
+  licenciaLocal: string;
+  vigInicioLicenciaLocal: string;
+  vigFinLicenciaLocal: string;
+  primaVacacional: string;
+  accesoTernium: string;
+  vigExamenMedico: string;
+  rControl: string;
+  vigenciaRControl: string;
+  foto: number;
+
 
   constructor(operadores: any) {
-    this.id_operador = operadores.id_operador;
+    this.idOperador = operadores.idOperador;
     this.nombre          = operadores.nombre;
-    this.fecha_alta      = operadores.fecha_alta;
-    this.apellidopaterno = operadores.apellidopaterno;
+    this.alias           = operadores.alias;
+    this.rfc          = operadores.rfc;
+    this.nss            = operadores.nss;
     this.curp            = operadores.curp;
-    this.telefono            = operadores.telefono;
-    this.licencia        = operadores.licencia;
-    this.fechavencimientolicencia = operadores.fechavencimientolicencia;
+    this.fechaIngreso            = operadores.fechaIngreso;
+    this.licenciaFederal            = operadores.licenciaFederal;
+    this.categoria            = operadores.categoria;
+    this.curp = operadores.curp;
+    this.vigenciaInicioLicenciaFederal = operadores.vigenciaInicioLicenciaFederal;
+    this.vigenciaFinLicenciaFederal = operadores.vigenciaFinLicenciaFederal;
+    this.expedienteMedico = operadores.expedienteMedico;
+    this.licenciaLocal = operadores.licenciaLocal;
+    this.vigInicioLicenciaLocal = operadores.vigInicioLicenciaLocal;
+    this.vigFinLicenciaLocal = operadores.vigFinLicenciaLocal;
+    this.primaVacacional = operadores.primaVacacional;
+    this.accesoTernium = operadores.accesoTernium;
+    this.vigExamenMedico = operadores.vigExamenMedico;
+    this.rControl = operadores.rControl;
+    this.vigenciaRControl = operadores.vigenciaRControl;
+    this.foto = operadores.foto;
   }
 }

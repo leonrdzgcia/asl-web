@@ -22,8 +22,8 @@
     <mat-form-field>
       <mat-label>Operador</mat-label>
       <mat-select formControlName="operador">
-        <mat-option *ngFor="let operador of operadores" [value]="operador.nombre+' '+operador.apellidopaterno">
-          {{ operador.nombre +" "+ operador.apellidopaterno}}
+        <mat-option *ngFor="let operador of operadores" [value]="operador.nombre">
+          {{ operador.nombre}}
         </mat-option>
       </mat-select>
       <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
