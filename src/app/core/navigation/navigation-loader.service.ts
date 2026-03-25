@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { VexLayoutService } from '@vex/services/vex-layout.service';
 import { NavigationItem } from './navigation-item.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { buildInfo } from '../../../environments/build-info';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class NavigationLoaderService {
 
       {
         type: 'subheading',
-        label: 'ver. 17 Marzo 2026',
+        label: `ver ${buildInfo.buildTimestamp}`,
         children: [
           {
             type: 'link',
