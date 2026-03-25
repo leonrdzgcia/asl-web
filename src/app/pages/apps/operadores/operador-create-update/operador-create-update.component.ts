@@ -70,7 +70,6 @@ export class OperadorCreateUpdateComponent implements OnInit {
       vigenciaInicioLicenciaFederal: ['', Validators.required],
       vigenciaFinLicenciaFederal: ['', Validators.required],
       expedienteMedico: ['', Validators.required],
-      
       licenciaLocal: ['', Validators.required],
       vigInicioLicenciaLocal: ['', Validators.required],
       vigFinLicenciaLocal: ['', Validators.required],
@@ -79,7 +78,7 @@ export class OperadorCreateUpdateComponent implements OnInit {
       vigExamenMedico: ['', Validators.required],
       rControl: ['', Validators.required],
       vigenciaRControl: ['', Validators.required],
-      foto: [null, Validators.required]
+      foto: [1]
     });
   }
 
@@ -93,7 +92,7 @@ export class OperadorCreateUpdateComponent implements OnInit {
   }
 
   save() {
-    console.log('.. SAVE El formulario operadores');
+    console.log('.. SAVE El formulario operadores save');
     if (this.mode === 'create') {
       this.createCustomer();
     } else if (this.mode === 'update') {
@@ -101,7 +100,8 @@ export class OperadorCreateUpdateComponent implements OnInit {
     }
   }
   createCustomer() {
-    console.log('.. SAVE El formulario operadores');
+    console.log('.. SAVE El formulario operadores create');
+    console.log(this.form.value);
     if (this.form.valid) {
       const formData = this.form.value;
       this.apiConsumo.guardarOperador(formData).subscribe({
