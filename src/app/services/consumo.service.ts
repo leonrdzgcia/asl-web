@@ -11,6 +11,20 @@ export class ConsumoService {
   private apiUrl = `${environment.serverApiUrl}`;
   constructor(private http: HttpClient) { }
 
+  // Métodos unidades
+  obtenerUnidades(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/api/unidades`);
+  }
+  guardarUnidad(formData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/api/unidades`, formData);
+  }
+  actualizarUnidad(id: number | string, formData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/api/unidades/${id}`, formData);
+  }
+  eliminarUnidad(id: number | string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/api/unidades/${id}`);
+  }
+
   // Métodos operadores
   obtenerOperadores(): Observable < any > {
     console.log(this.apiUrl);

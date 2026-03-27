@@ -32,6 +32,12 @@ export class NavigationLoaderService {
             route: '/apps/operadores',
             icon: 'mat:assignment'
           },
+          {
+            type: 'link',
+            label: 'Unidades',
+            route: '/apps/unidades',
+            icon: 'mat:assignment'
+          },
           /*{
             type: 'link',
             label: 'Historial de Cargas',
