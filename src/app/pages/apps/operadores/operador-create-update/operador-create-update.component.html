@@ -52,7 +52,9 @@
     <div class="flex flex-col sm:flex-row">
       <mat-form-field class="flex-auto">
         <mat-label>fechaIngreso</mat-label>
-        <input formControlName="fechaIngreso" matInput />
+        <input [matDatepicker]="fechaIngresoPicker" formControlName="fechaIngreso" matInput />
+        <mat-datepicker-toggle [for]="fechaIngresoPicker" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #fechaIngresoPicker></mat-datepicker>
         <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
       </mat-form-field>
       <mat-form-field class="sm:ml-6 flex-auto">
@@ -70,7 +72,9 @@
       </mat-form-field>
       <mat-form-field class="sm:ml-6 flex-auto">
         <mat-label>vigenciaInicioLicenciaFederal</mat-label>
-        <input formControlName="vigenciaInicioLicenciaFederal" matInput type="date" />
+        <input [matDatepicker]="vigenciaInicioLicenciaFederalPicker" formControlName="vigenciaInicioLicenciaFederal" matInput />
+        <mat-datepicker-toggle [for]="vigenciaInicioLicenciaFederalPicker" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #vigenciaInicioLicenciaFederalPicker></mat-datepicker>
         <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
       </mat-form-field>
     </div>
@@ -78,7 +82,9 @@
     <div class="flex flex-col sm:flex-row">
       <mat-form-field class="flex-auto">
         <mat-label>vigenciaFinLicenciaFederal</mat-label>
-        <input formControlName="vigenciaFinLicenciaFederal" matInput type="date" />
+        <input [matDatepicker]="vigenciaFinLicenciaFederalPicker" formControlName="vigenciaFinLicenciaFederal" matInput />
+        <mat-datepicker-toggle [for]="vigenciaFinLicenciaFederalPicker" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #vigenciaFinLicenciaFederalPicker></mat-datepicker>
         <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
       </mat-form-field>
       <mat-form-field class="sm:ml-6 flex-auto">
@@ -96,7 +102,9 @@
       </mat-form-field>
       <mat-form-field class="sm:ml-6 flex-auto">
         <mat-label>vigInicioLicenciaLocal</mat-label>
-        <input formControlName="vigInicioLicenciaLocal" matInput type="date" />
+        <input [matDatepicker]="vigInicioLicenciaLocalPicker" formControlName="vigInicioLicenciaLocal" matInput />
+        <mat-datepicker-toggle [for]="vigInicioLicenciaLocalPicker" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #vigInicioLicenciaLocalPicker></mat-datepicker>
         <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
       </mat-form-field>
     </div>
@@ -104,12 +112,16 @@
     <div class="flex flex-col sm:flex-row">
       <mat-form-field class="flex-auto">
         <mat-label>vigFinLicenciaLocal</mat-label>
-        <input formControlName="vigFinLicenciaLocal" matInput type="date" />
+        <input [matDatepicker]="vigFinLicenciaLocalPicker" formControlName="vigFinLicenciaLocal" matInput />
+        <mat-datepicker-toggle [for]="vigFinLicenciaLocalPicker" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #vigFinLicenciaLocalPicker></mat-datepicker>
         <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
       </mat-form-field>
       <mat-form-field class="sm:ml-6 flex-auto">
         <mat-label>primaVacacional</mat-label>
-        <input formControlName="primaVacacional" matInput type="date" />
+        <input [matDatepicker]="primaVacacionalPicker" formControlName="primaVacacional" matInput />
+        <mat-datepicker-toggle [for]="primaVacacionalPicker" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #primaVacacionalPicker></mat-datepicker>
         <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
       </mat-form-field>
     </div>
@@ -122,7 +134,9 @@
       </mat-form-field>
       <mat-form-field class="sm:ml-6 flex-auto">
         <mat-label>vigExamenMedico</mat-label>
-        <input formControlName="vigExamenMedico" matInput type="date" />
+        <input [matDatepicker]="vigExamenMedicoPicker" formControlName="vigExamenMedico" matInput />
+        <mat-datepicker-toggle [for]="vigExamenMedicoPicker" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #vigExamenMedicoPicker></mat-datepicker>
         <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
       </mat-form-field>
     </div>
@@ -135,7 +149,9 @@
       </mat-form-field>
       <mat-form-field class="sm:ml-6 flex-auto">
         <mat-label>vigenciaRControl</mat-label>
-        <input formControlName="vigenciaRControl" matInput type="date" />
+        <input [matDatepicker]="vigenciaRControlPicker" formControlName="vigenciaRControl" matInput />
+        <mat-datepicker-toggle [for]="vigenciaRControlPicker" matIconSuffix></mat-datepicker-toggle>
+        <mat-datepicker #vigenciaRControlPicker></mat-datepicker>
         <mat-icon matIconPrefix svgIcon="mat:person"></mat-icon>
       </mat-form-field>
     </div>

@@ -58,6 +58,7 @@ export class OperadorCreateUpdateComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
+      id: [''],
       idOperador: [''],
       nombre: ['', Validators.required],
       alias: ['', Validators.required],
@@ -123,7 +124,8 @@ export class OperadorCreateUpdateComponent implements OnInit {
   }
   updateCustomer() {
     console.log('-- updateCustomer');
-    this.apiConsumo.actualizarOperador(this.form.value.id_operador, this.form.value).subscribe({
+    console.log(this.form.value);
+    this.apiConsumo.actualizarOperador(this.form.value.id, this.form.value).subscribe({
       next: (response) => {
         console.log('Operador actualizado', response);
         this.snackBar.open('Operador actualizado exitosamente.', 'Cerrar', {
